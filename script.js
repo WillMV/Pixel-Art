@@ -3,6 +3,7 @@ const pixel = document.getElementsByClassName('pixel');
 const pixelRow = document.getElementsByClassName('pixel-row')
 const pixelBoard = document.getElementById('pixel-board');
 const clearBoard = document.getElementById('clear-board');
+const hasBorder = document.getElementById('has-border');
 const input = document.getElementById('board-size');
 const boardBtn = document.getElementById('generate-board');
 const colorPalette = document.getElementById('color-palette');
@@ -58,9 +59,12 @@ function removeBoard() {
 }
 
 function createPixel(column) {
+  const className = hasBorder.checked
+    ? 'pixel border'
+    : 'pixel';
   for (let index = 0; index < input.value; index++) {
     const div = document.createElement('div');
-    div.className = 'pixel';
+    div.className = className;
     column.appendChild(div);
   }
 }
@@ -82,11 +86,16 @@ function newBoard() {
   } else {
     alert('Board inválido!');
   }
+  restoreColorBoard();
+  restoreColorPalette();
 }
 
 function paint(event) {
+  const className = hasBorder.checked
+    ? 'pixel border'
+    : 'pixel';
   const selected = document.querySelector('.selected');
-  if (event.target.className === 'pixel') {
+  if (event.target.className === className) {
     event.target.style.backgroundColor = selected.style.backgroundColor;
     saveBoard(event);
   }
@@ -136,11 +145,9 @@ colorPalette.addEventListener('click', selector);
 clearBoard.addEventListener('click', erase);
 pixelBoard.addEventListener('click', paint);
 colorButton.addEventListener('click', colorGenerator);
+hasBorder.addEventListener('click', newBoard)
 boardBtn.addEventListener('click', () => {
   localStorage.removeItem('pixelBoard');
   newBoard()
 });
-
-restoreColorBoard();
-restoreColorPalette();
 
