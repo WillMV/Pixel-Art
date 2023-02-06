@@ -33,9 +33,9 @@
 #pixel-board {
   display: block;
   margin-top: 25px;
-  margin-left: calc(50% - 135px);
-  width: 270px;
-  height: 270px;
+  /* margin-left: calc(50% - 135px); */
+  /* width: 270px;
+  height: 270px; */
 }
 
 #button-random-color {

@@ -1,5 +1,6 @@
 const color = document.getElementsByClassName('color');
 const pixel = document.getElementsByClassName('pixel');
+const pixelRow = document.getElementsByClassName('pixel-row')
 const pixelBoard = document.getElementById('pixel-board');
 const clearBoard = document.getElementById('clear-board');
 const input = document.getElementById('board-size');
@@ -17,8 +18,7 @@ function restoreColorPalette() {
   }
 }
 
-function selector(e) {
-  const event = e;
+function selector(event) {
   if (event.target.className === 'color') {
     for (let index = 0; index < color.length; index += 1) {
       color[index].className = 'color';
@@ -47,41 +47,33 @@ function saveBoard(event, bool) {
 }
 
 function removeBoard() {
-  const pixelLength = pixel.length;
-  for (let index = 0; index < pixelLength; index += 1) {
-    pixelBoard.removeChild(pixel[0]);
+  const rowLength = pixelRow.length;
+  for (let index = 0; index < rowLength; index += 1) {
+    pixelBoard.removeChild(pixelRow[0]);
   }
 }
 
-function creatNewBoard() {
-  const div = document.createElement('div');
-  div.className = 'pixel';
-  pixelBoard.appendChild(div);
+function createPixel(column) {
+  for (let index = 0; index < input.value; index++) {
+    const div = document.createElement('div');
+    div.className = 'pixel';
+    column.appendChild(div);
+  }
 }
 
-function ajustSizeBoard() {
-  const value = Number(input.value) + 8;
-  pixelBoard.style.width = `${(value) * 45}px`;
-  pixelBoard.style.height = `${(value) * 45}px`;
-  const marginLeft = value * 22.5;
-  pixelBoard.style.marginLeft = `calc(50% - ${marginLeft}px)`;
+function createRow() {
+  const div = document.createElement('div');
+  div.className = 'pixel-row';
+  pixelBoard.appendChild(div);
+  createPixel(div)
 }
 
 function newBoard() {
   localStorage.boardSize = JSON.stringify(input.value);
-  if (input.value > 4 && input.value < 51) {
+  if (input.value > 1 && input.value <= 128) {
     removeBoard();
-    const value = input.value * input.value;
-    for (let index = 0; index < value; index += 1) {
-      ajustSizeBoard();
-      creatNewBoard();
-    }
-    localStorage.removeItem('pixelBoard');
-  } else if (input.value > 50) {
-    removeBoard();
-    for (let index = 0; index < 2500; index += 1) {
-      ajustSizeBoard();
-      creatNewBoard();
+    for (let index = 0; index < input.value; index += 1) {
+      createRow();
     }
     localStorage.removeItem('pixelBoard');
   } else {
@@ -134,7 +126,6 @@ if (localStorage.boardSize) {
   newBoard();
 }
 
-console.log(input.value);
 
 color[0].classList = [`${color[0].className} selected`];
 color[0].style.backgroundColor = 'black';
@@ -150,3 +141,6 @@ vqv.addEventListener('click', newBoard);
 
 saveBoard(false);
 restoreColorPalette();
+
+input.value = 5
+newBoard()
