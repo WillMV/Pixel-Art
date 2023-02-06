@@ -124,6 +124,9 @@ if (color.length > 3) {
 if (localStorage.boardSize) {
   input.value = JSON.parse(localStorage.boardSize);
   newBoard();
+} else {
+  input.value = 5
+  newBoard()
 }
 
 
@@ -142,5 +145,3 @@ vqv.addEventListener('click', newBoard);
 saveBoard(false);
 restoreColorPalette();
 
-input.value = 5
-newBoard()
