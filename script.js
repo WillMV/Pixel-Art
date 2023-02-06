@@ -4,10 +4,10 @@ const pixelRow = document.getElementsByClassName('pixel-row')
 const pixelBoard = document.getElementById('pixel-board');
 const clearBoard = document.getElementById('clear-board');
 const input = document.getElementById('board-size');
-const vqv = document.getElementById('generate-board');
+const boardBtn = document.getElementById('generate-board');
 const colorPalette = document.getElementById('color-palette');
 const colorButton = document.getElementById('button-random-color');
-const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
+const HEX = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
 
 function restoreColorPalette() {
   if (localStorage.colorPalette) {
@@ -95,8 +95,8 @@ function paint(event) {
 function selectColor() {
   let hexKey = '#';
   for (let i = 0; i < 6; i += 1) {
-    const index = Math.floor(Math.random() * hex.length);
-    hexKey += hex[index];
+    const index = Math.floor(Math.random() * HEX.length);
+    hexKey += HEX[index];
   }
   return hexKey;
 }
@@ -117,12 +117,6 @@ function erase() {
   localStorage.removeItem('pixelBoard');
 }
 
-// if (color.length > 3) {
-//   for (let index = 1; index < color.length; index += 1) {
-//     color[index].style.backgroundColor = selectColor;
-//   }
-// }
-
 if (localStorage.boardSize) {
   input.value = JSON.parse(localStorage.boardSize);
   newBoard();
@@ -132,7 +126,7 @@ if (localStorage.boardSize) {
 }
 
 
-// color[0].classList = [`${color[0].className} selected`];
+
 color[0].style.backgroundColor = 'black';
 color[1].style.backgroundColor = 'red';
 color[2].style.backgroundColor = 'green';
@@ -142,7 +136,7 @@ colorPalette.addEventListener('click', selector);
 clearBoard.addEventListener('click', erase);
 pixelBoard.addEventListener('click', paint);
 colorButton.addEventListener('click', colorGenerator);
-vqv.addEventListener('click', () => {
+boardBtn.addEventListener('click', () => {
   localStorage.removeItem('pixelBoard');
   newBoard()
 });
