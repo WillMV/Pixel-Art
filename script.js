@@ -1,6 +1,6 @@
 const color = document.getElementsByClassName('color');
 const pixel = document.getElementsByClassName('pixel');
-const pixelColumn = document.getElementsByClassName('pixel-column')
+const pixelRow = document.getElementsByClassName('pixel-row')
 const pixelBoard = document.getElementById('pixel-board');
 const clearBoard = document.getElementById('clear-board');
 const input = document.getElementById('board-size');
@@ -47,9 +47,9 @@ const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
 // }
 
 function removeBoard() {
-  const pixelLength = pixel.length;
-  for (let index = 0; index < pixelLength; index += 1) {
-    pixelBoard.removeChild(pixel[0]);
+  const rowLength = pixelRow.length;
+  for (let index = 0; index < rowLength; index += 1) {
+    pixelBoard.removeChild(pixelRow[0]);
   }
 }
 
@@ -141,3 +141,6 @@ vqv.addEventListener('click', newBoard);
 
 // saveBoard(false);
 // restoreColorPalette();
+
+input.value = 5
+newBoard()
