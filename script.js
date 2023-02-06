@@ -27,23 +27,27 @@ function selector(event) {
   }
 }
 
-function saveBoard(event, bool) {
+function saveBoard(event) {
   let colors = [];
   if (localStorage.pixelBoard) {
     colors = JSON.parse(localStorage.pixelBoard);
   }
-  if (bool) {
-    for (let index = 0; index < pixel.length; index += 1) {
-      if (pixel[index] === event.target) {
-        colors[index] = event.target.style.backgroundColor;
-      }
+  for (let index = 0; index < pixel.length; index += 1) {
+    if (pixel[index] === event.target) {
+      colors[index] = pixel[index].style.backgroundColor;
     }
-  } else {
+  }
+  localStorage.pixelBoard = JSON.stringify(colors);
+}
+
+function restoreColorBoard() {
+  let colors = [];
+  if (localStorage.pixelBoard) {
+    colors = JSON.parse(localStorage.pixelBoard);
     for (let index = 0; index < pixel.length; index += 1) {
       pixel[index].style.backgroundColor = colors[index];
     }
   }
-  localStorage.pixelBoard = JSON.stringify(colors);
 }
 
 function removeBoard() {
@@ -75,18 +79,16 @@ function newBoard() {
     for (let index = 0; index < input.value; index += 1) {
       createRow();
     }
-    localStorage.removeItem('pixelBoard');
   } else {
     alert('Board inválido!');
   }
 }
 
-function paint(e) {
-  const event = e;
+function paint(event) {
   const selected = document.querySelector('.selected');
   if (event.target.className === 'pixel') {
     event.target.style.backgroundColor = selected.style.backgroundColor;
-    saveBoard(event, true);
+    saveBoard(event);
   }
 }
 
@@ -115,11 +117,11 @@ function erase() {
   localStorage.removeItem('pixelBoard');
 }
 
-if (color.length > 3) {
-  for (let index = 1; index < color.length; index += 1) {
-    color[index].style.backgroundColor = selectColor;
-  }
-}
+// if (color.length > 3) {
+//   for (let index = 1; index < color.length; index += 1) {
+//     color[index].style.backgroundColor = selectColor;
+//   }
+// }
 
 if (localStorage.boardSize) {
   input.value = JSON.parse(localStorage.boardSize);
@@ -130,7 +132,7 @@ if (localStorage.boardSize) {
 }
 
 
-color[0].classList = [`${color[0].className} selected`];
+// color[0].classList = [`${color[0].className} selected`];
 color[0].style.backgroundColor = 'black';
 color[1].style.backgroundColor = 'red';
 color[2].style.backgroundColor = 'green';
@@ -140,8 +142,11 @@ colorPalette.addEventListener('click', selector);
 clearBoard.addEventListener('click', erase);
 pixelBoard.addEventListener('click', paint);
 colorButton.addEventListener('click', colorGenerator);
-vqv.addEventListener('click', newBoard);
+vqv.addEventListener('click', () => {
+  localStorage.removeItem('pixelBoard');
+  newBoard()
+});
 
-saveBoard(false);
+restoreColorBoard();
 restoreColorPalette();
 
