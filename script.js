@@ -10,6 +10,11 @@ const colorPalette = document.getElementById('color-palette');
 const colorButton = document.getElementById('button-random-color');
 const HEX = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
 
+color[0].style.backgroundColor = 'black';
+color[1].style.backgroundColor = 'red';
+color[2].style.backgroundColor = 'green';
+color[3].style.backgroundColor = 'blue';
+
 function restoreColorPalette() {
   if (localStorage.colorPalette) {
     const palette = JSON.parse(localStorage.colorPalette);
@@ -83,11 +88,11 @@ function newBoard() {
     for (let index = 0; index < input.value; index += 1) {
       createRow();
     }
+    restoreColorBoard();
+    restoreColorPalette();
   } else {
     alert('Board inválido!');
   }
-  restoreColorBoard();
-  restoreColorPalette();
 }
 
 function paint(event) {
@@ -131,15 +136,8 @@ if (localStorage.boardSize) {
   newBoard();
 } else {
   input.value = 5
-  newBoard()
+  newBoard();
 }
-
-
-
-color[0].style.backgroundColor = 'black';
-color[1].style.backgroundColor = 'red';
-color[2].style.backgroundColor = 'green';
-color[3].style.backgroundColor = 'blue';
 
 colorPalette.addEventListener('click', selector);
 clearBoard.addEventListener('click', erase);
