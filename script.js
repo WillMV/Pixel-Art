@@ -9,42 +9,42 @@ const colorPalette = document.getElementById('color-palette');
 const colorButton = document.getElementById('button-random-color');
 const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
 
-// function restoreColorPalette() {
-//   if (localStorage.colorPalette) {
-//     const palette = JSON.parse(localStorage.colorPalette);
-//     for (let i = 1; i < color.length; i += 1) {
-//       color[i].style.backgroundColor = palette[i - 1];
-//     }
-//   }
-// }
+function restoreColorPalette() {
+  if (localStorage.colorPalette) {
+    const palette = JSON.parse(localStorage.colorPalette);
+    for (let i = 1; i < color.length; i += 1) {
+      color[i].style.backgroundColor = palette[i - 1];
+    }
+  }
+}
 
-// function selector(event) {
-//   if (event.target.className === 'color') {
-//     for (let index = 0; index < color.length; index += 1) {
-//       color[index].className = 'color';
-//     }
-//     event.target.classList = [`${event.target.className} selected`];
-//   }
-// }
+function selector(event) {
+  if (event.target.className === 'color') {
+    for (let index = 0; index < color.length; index += 1) {
+      color[index].className = 'color';
+    }
+    event.target.classList = [`${event.target.className} selected`];
+  }
+}
 
-// function saveBoard(event, bool) {
-//   let colors = [];
-//   if (localStorage.pixelBoard) {
-//     colors = JSON.parse(localStorage.pixelBoard);
-//   }
-//   if (bool) {
-//     for (let index = 0; index < pixel.length; index += 1) {
-//       if (pixel[index] === event.target) {
-//         colors[index] = event.target.style.backgroundColor;
-//       }
-//     }
-//   } else {
-//     for (let index = 0; index < pixel.length; index += 1) {
-//       pixel[index].style.backgroundColor = colors[index];
-//     }
-//   }
-//   localStorage.pixelBoard = JSON.stringify(colors);
-// }
+function saveBoard(event, bool) {
+  let colors = [];
+  if (localStorage.pixelBoard) {
+    colors = JSON.parse(localStorage.pixelBoard);
+  }
+  if (bool) {
+    for (let index = 0; index < pixel.length; index += 1) {
+      if (pixel[index] === event.target) {
+        colors[index] = event.target.style.backgroundColor;
+      }
+    }
+  } else {
+    for (let index = 0; index < pixel.length; index += 1) {
+      pixel[index].style.backgroundColor = colors[index];
+    }
+  }
+  localStorage.pixelBoard = JSON.stringify(colors);
+}
 
 function removeBoard() {
   const rowLength = pixelRow.length;
@@ -81,50 +81,50 @@ function newBoard() {
   }
 }
 
-// function paint(e) {
-//   const event = e;
-//   const selected = document.querySelector('.selected');
-//   if (event.target.className === 'pixel') {
-//     event.target.style.backgroundColor = selected.style.backgroundColor;
-//     saveBoard(event, true);
-//   }
-// }
+function paint(e) {
+  const event = e;
+  const selected = document.querySelector('.selected');
+  if (event.target.className === 'pixel') {
+    event.target.style.backgroundColor = selected.style.backgroundColor;
+    saveBoard(event, true);
+  }
+}
 
-// function selectColor() {
-//   let hexKey = '#';
-//   for (let i = 0; i < 6; i += 1) {
-//     const index = Math.floor(Math.random() * hex.length);
-//     hexKey += hex[index];
-//   }
-//   return hexKey;
-// }
+function selectColor() {
+  let hexKey = '#';
+  for (let i = 0; i < 6; i += 1) {
+    const index = Math.floor(Math.random() * hex.length);
+    hexKey += hex[index];
+  }
+  return hexKey;
+}
 
-// function colorGenerator() {
-//   const setPalette = [];
-//   for (let index = 1; index < color.length; index += 1) {
-//     color[index].style.backgroundColor = selectColor();
-//     setPalette[index - 1] = color[index].style.backgroundColor;
-//   }
-//   localStorage.colorPalette = JSON.stringify(setPalette);
-// }
+function colorGenerator() {
+  const setPalette = [];
+  for (let index = 1; index < color.length; index += 1) {
+    color[index].style.backgroundColor = selectColor();
+    setPalette[index - 1] = color[index].style.backgroundColor;
+  }
+  localStorage.colorPalette = JSON.stringify(setPalette);
+}
 
-// function erase() {
-//   for (let index = 0; index < pixel.length; index += 1) {
-//     pixel[index].style.backgroundColor = 'white';
-//   }
-//   localStorage.removeItem('pixelBoard');
-// }
+function erase() {
+  for (let index = 0; index < pixel.length; index += 1) {
+    pixel[index].style.backgroundColor = 'white';
+  }
+  localStorage.removeItem('pixelBoard');
+}
 
-// if (color.length > 3) {
-//   for (let index = 1; index < color.length; index += 1) {
-//     color[index].style.backgroundColor = selectColor;
-//   }
-// }
+if (color.length > 3) {
+  for (let index = 1; index < color.length; index += 1) {
+    color[index].style.backgroundColor = selectColor;
+  }
+}
 
-// if (localStorage.boardSize) {
-//   input.value = JSON.parse(localStorage.boardSize);
-//   newBoard();
-// }
+if (localStorage.boardSize) {
+  input.value = JSON.parse(localStorage.boardSize);
+  newBoard();
+}
 
 
 color[0].classList = [`${color[0].className} selected`];
@@ -133,14 +133,14 @@ color[1].style.backgroundColor = 'red';
 color[2].style.backgroundColor = 'green';
 color[3].style.backgroundColor = 'blue';
 
-// colorPalette.addEventListener('click', selector);
-// clearBoard.addEventListener('click', erase);
-// pixelBoard.addEventListener('click', paint);
-// colorButton.addEventListener('click', colorGenerator);
+colorPalette.addEventListener('click', selector);
+clearBoard.addEventListener('click', erase);
+pixelBoard.addEventListener('click', paint);
+colorButton.addEventListener('click', colorGenerator);
 vqv.addEventListener('click', newBoard);
 
-// saveBoard(false);
-// restoreColorPalette();
+saveBoard(false);
+restoreColorPalette();
 
 input.value = 5
 newBoard()
