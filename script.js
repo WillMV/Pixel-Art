@@ -70,7 +70,7 @@ function createRow() {
 
 function newBoard() {
   localStorage.boardSize = JSON.stringify(input.value);
-  if (input.value > 1) {
+  if (input.value > 1 && input.value <= 128) {
     removeBoard();
     for (let index = 0; index < input.value; index += 1) {
       createRow();
