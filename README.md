@@ -8,7 +8,8 @@ O primeiro commit é o resultado final do projeto feito em tempo de estudo e apr
 
 # Aprendizado 
 * Manipulação de DOM HTML5 via javascript
-*![image](https://user-images.githubusercontent.com/104516787/217349694-8c696a28-39c0-45c6-ab1e-52c6109598a7.png)
+
+![image](https://user-images.githubusercontent.com/104516787/217349694-8c696a28-39c0-45c6-ab1e-52c6109598a7.png)
 
 # Acesso 
 https://willmv.github.io/pixel-art/
