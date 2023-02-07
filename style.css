@@ -47,6 +47,9 @@
   padding: 0;
 }
 
+#title {
+  width: 25vw;
+}
 
 #pixel-board {
   margin: 25px 0 0 0;

@@ -138,14 +138,17 @@ function handleMouseMove(event) {
   if (isMousePressed) {
     paint(event)
   }
+  console.log(event)
 }
 
-function handleMouseDown() {
+function handleMouseDown(event) {
   isMousePressed = true
+  console.log(event)
 }
 
-function handleMouseUp() {
+function handleMouseUp(event) {
   isMousePressed = false
+  console.log(event)
 }
 
 if (localStorage.boardSize) {
@@ -156,12 +159,16 @@ if (localStorage.boardSize) {
   newBoard();
 }
 
+this.addEventListener('touchstart', handleMouseDown)
+this.addEventListener('touchend', handleMouseUp)
+pixelBoard.addEventListener('touchmove', handleMouseMove)
+
 this.addEventListener('mousedown', handleMouseDown)
 this.addEventListener('mouseup', handleMouseUp)
-this.addEventListener('mouseleave', handleMouseUp)
+pixelBoard.addEventListener('mousemove', handleMouseMove)
+
 colorPalette.addEventListener('click', colorSelector);
 clearBoard.addEventListener('click', clearAll);
-pixelBoard.addEventListener('mousemove', handleMouseMove)
 colorButton.addEventListener('click', colorGenerator);
 hasBorder.addEventListener('click', newBoard)
 
