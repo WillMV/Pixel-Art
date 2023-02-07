@@ -4,22 +4,28 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
+  box-sizing: border-box;
 }
 
 #color-palette {
-  display: inline;
-  height: 25px;
-  width: 150px;
-  margin-left: 25px;
+  justify-content: space-evenly;
+  display: inline-flex;
+}
+
+.selected {
+  border: 1px solid rgb(94, 94, 94);
 }
 
 .color {
   display: inline-block;
-  border: 1px solid black;
   height: 25px;
   width: 25px;
-  margin-right: 10px;
+}
+
+.color:hover {
+  height: 25px;
+  width: 25px;
+  border: 1px solid rgb(94, 94, 94);
 }
 
 .pixel {

@@ -11,9 +11,10 @@ const colorButton = document.getElementById('button-random-color');
 const HEX = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
 
 color[0].style.backgroundColor = 'black';
-color[1].style.backgroundColor = 'red';
-color[2].style.backgroundColor = 'green';
-color[3].style.backgroundColor = 'blue';
+color[1].style.backgroundColor = 'white';
+color[2].style.backgroundColor = 'red';
+color[3].style.backgroundColor = 'green';
+color[4].style.backgroundColor = 'blue';
 
 let isMousePressed = false
 
@@ -72,7 +73,6 @@ function createPixel(column) {
   for (let index = 0; index < input.value; index++) {
     const div = document.createElement('div');
     div.className = className;
-    // div.draggable = false
     column.appendChild(div);
   }
 }
@@ -120,7 +120,7 @@ function selectColor() {
 
 function colorGenerator() {
   const setPalette = [];
-  for (let index = 1; index < color.length; index += 1) {
+  for (let index = 2; index < color.length; index += 1) {
     color[index].style.backgroundColor = selectColor();
     setPalette[index - 1] = color[index].style.backgroundColor;
   }
