@@ -72,3 +72,15 @@
   background-color: blue;
 }
 
+@media print {
+  #menu{
+    display: none;
+  }
+  .pixel {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }  
+  .border {
+    border: none;
+  }
+}
