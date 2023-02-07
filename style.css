@@ -3,6 +3,12 @@
   transition: 0.25s all;
 }
 
+#menu {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 #color-palette {
   display: inline;
   height: 25px;

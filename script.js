@@ -15,6 +15,8 @@ color[1].style.backgroundColor = 'red';
 color[2].style.backgroundColor = 'green';
 color[3].style.backgroundColor = 'blue';
 
+let isMousePressed = false
+
 function restoreColorPalette() {
   if (localStorage.colorPalette) {
     const palette = JSON.parse(localStorage.colorPalette);
@@ -70,6 +72,7 @@ function createPixel(column) {
   for (let index = 0; index < input.value; index++) {
     const div = document.createElement('div');
     div.className = className;
+    div.draggable = false
     column.appendChild(div);
   }
 }
@@ -139,9 +142,24 @@ if (localStorage.boardSize) {
   newBoard();
 }
 
+function handleMouseMove(event) {
+  if (isMousePressed) {
+    paint(event)
+  }
+}
+
+function handleMouseDown(event) {
+  isMousePressed = true
+}
+
+function handleMouseUp(event) {
+  isMousePressed = false
+}
+
 colorPalette.addEventListener('click', selector);
 clearBoard.addEventListener('click', erase);
-pixelBoard.addEventListener('click', paint);
+pixelBoard.addEventListener('mousedown', paint)
+pixelBoard.addEventListener('mousemove', handleMouseMove)
 colorButton.addEventListener('click', colorGenerator);
 hasBorder.addEventListener('click', newBoard)
 boardBtn.addEventListener('click', () => {
@@ -149,3 +167,6 @@ boardBtn.addEventListener('click', () => {
   newBoard()
 });
 
+this.addEventListener('mousedown', handleMouseDown)
+this.addEventListener('mouseup', handleMouseUp)
+this.addEventListener('mouseleave', handleMouseUp)
