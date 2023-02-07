@@ -1,12 +1,10 @@
 * {
   text-align: center;
   transition: 0.25s all;
-}
-
-#menu {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
 }
 
 #color-palette {
@@ -28,6 +26,8 @@
   display: inline-block;
   width: 40px;
   height: 40px;
+  margin: 0;
+  padding: 0;
 }
 
 .border {
@@ -36,19 +36,23 @@
 
 .pixel-row {
   height: 40px;
+  min-width: max-content;
+  margin: 0;
+  padding: 0;
 }
 
 
 #pixel-board {
-  display: inline-block;
-  margin-top: 25px;
+  margin: 25px 0 0 0;
+  padding: 0;
+
 }
 
-#has-border {
+/* #has-border {
   text-decoration: none;
-}
+} */
 
-#button-conteiner {
+#button-container {
   margin: 8px;
 }
 
