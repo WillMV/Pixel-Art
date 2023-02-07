@@ -1,9 +1,6 @@
 * {
   text-align: center;
   transition: 0.25s all;
-}
-
-#menu {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -44,9 +41,9 @@
   margin-top: 25px;
 }
 
-#has-border {
+/* #has-border {
   text-decoration: none;
-}
+} */
 
 #button-container {
   margin: 8px;
