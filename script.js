@@ -26,7 +26,7 @@ function restoreColorPalette() {
   }
 }
 
-function selector(event) {
+function colorSelector(event) {
   if (event.target.className === 'color') {
     for (let index = 0; index < color.length; index += 1) {
       color[index].className = 'color';
@@ -127,11 +127,25 @@ function colorGenerator() {
   localStorage.colorPalette = JSON.stringify(setPalette);
 }
 
-function erase() {
+function clearAll() {
   for (let index = 0; index < pixel.length; index += 1) {
     pixel[index].style.backgroundColor = 'white';
   }
   localStorage.removeItem('pixelBoard');
+}
+
+function handleMouseMove(event) {
+  if (isMousePressed) {
+    paint(event)
+  }
+}
+
+function handleMouseDown() {
+  isMousePressed = true
+}
+
+function handleMouseUp() {
+  isMousePressed = false
 }
 
 if (localStorage.boardSize) {
@@ -142,31 +156,18 @@ if (localStorage.boardSize) {
   newBoard();
 }
 
-function handleMouseMove(event) {
-  if (isMousePressed) {
-    paint(event)
-  }
-}
-
-function handleMouseDown(event) {
-  isMousePressed = true
-}
-
-function handleMouseUp(event) {
-  isMousePressed = false
-}
-
-colorPalette.addEventListener('click', selector);
-clearBoard.addEventListener('click', erase);
-pixelBoard.addEventListener('mousedown', paint)
+this.addEventListener('mousedown', handleMouseDown)
+this.addEventListener('mouseup', handleMouseUp)
+this.addEventListener('mouseleave', handleMouseUp)
+colorPalette.addEventListener('click', colorSelector);
+clearBoard.addEventListener('click', clearAll);
 pixelBoard.addEventListener('mousemove', handleMouseMove)
 colorButton.addEventListener('click', colorGenerator);
 hasBorder.addEventListener('click', newBoard)
+
 boardBtn.addEventListener('click', () => {
   localStorage.removeItem('pixelBoard');
   newBoard()
 });
 
-this.addEventListener('mousedown', handleMouseDown)
-this.addEventListener('mouseup', handleMouseUp)
-this.addEventListener('mouseleave', handleMouseUp)
+
