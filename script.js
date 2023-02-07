@@ -16,7 +16,7 @@ color[2].style.backgroundColor = 'green';
 color[3].style.backgroundColor = 'blue';
 
 let isMousePressed = false
-
+console.log(this)
 function restoreColorPalette() {
   if (localStorage.colorPalette) {
     const palette = JSON.parse(localStorage.colorPalette);
@@ -72,7 +72,7 @@ function createPixel(column) {
   for (let index = 0; index < input.value; index++) {
     const div = document.createElement('div');
     div.className = className;
-    div.draggable = false
+    div.draggable = false;
     column.appendChild(div);
   }
 }
@@ -80,6 +80,7 @@ function createPixel(column) {
 function createRow() {
   const div = document.createElement('div');
   div.className = 'pixel-row';
+  div.draggable = false;
   pixelBoard.appendChild(div);
   createPixel(div)
 }
@@ -98,14 +99,20 @@ function newBoard() {
   }
 }
 
-function paint(event) {
-  const className = hasBorder.checked
-    ? 'pixel border'
-    : 'pixel';
-  const selected = document.querySelector('.selected');
-  if (event.target.className === className) {
-    event.target.style.backgroundColor = selected.style.backgroundColor;
-    saveBoard(event);
+// function paint(event) {
+//   const className = hasBorder.checked
+//     ? 'pixel border'
+//     : 'pixel';
+//   const selected = document.querySelector('.selected');
+//   if (event.target.className === className) {
+//     event.target.style.backgroundColor = selected.style.backgroundColor;
+//     saveBoard(event);
+//   }
+// }
+
+function paint() {
+  if(isMousePressed) {
+
   }
 }
 
@@ -142,24 +149,24 @@ if (localStorage.boardSize) {
   newBoard();
 }
 
-function handleMouseMove(event) {
-  if (isMousePressed) {
-    paint(event)
-  }
-}
+// function handleMouseMove(event) {
+//   if (isMousePressed) {
+//     paint(event)
+//   }
+// }
 
 function handleMouseDown(event) {
+  console.log(event)
   isMousePressed = true
 }
 
-function handleMouseUp(event) {
+function handleMouseUp() {
   isMousePressed = false
 }
 
 colorPalette.addEventListener('click', selector);
 clearBoard.addEventListener('click', erase);
-pixelBoard.addEventListener('mousedown', paint)
-pixelBoard.addEventListener('mousemove', handleMouseMove)
+// pixelBoard.addEventListener('mousedown', paint)
 colorButton.addEventListener('click', colorGenerator);
 hasBorder.addEventListener('click', newBoard)
 boardBtn.addEventListener('click', () => {
@@ -167,6 +174,7 @@ boardBtn.addEventListener('click', () => {
   newBoard()
 });
 
+// this.addEventListener('mousemove', handleMouseMove)
 this.addEventListener('mousedown', handleMouseDown)
 this.addEventListener('mouseup', handleMouseUp)
 this.addEventListener('mouseleave', handleMouseUp)
