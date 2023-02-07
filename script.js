@@ -72,6 +72,7 @@ function createPixel(column) {
   for (let index = 0; index < input.value; index++) {
     const div = document.createElement('div');
     div.className = className;
+    div.draggable = false
     column.appendChild(div);
   }
 }

@@ -10,27 +10,27 @@
 </head>
 
 <body>
-  
-  <h1 id="title">Pixel Art</h1>
-  
-  <div id="color-palette">
-    <div class="color selected"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-  </div>
-  <div id="button-conteiner">
-    <button id="button-random-color">Cores aleatórias</button>
-    <button id="clear-board">Limpar</button>
-    <label for="has-border" />
-    <input type="checkbox" id="has-border" checked="true"> border
-    <br>
-  </div>
-    <input id="board-size" type="number" min= "1">
+  <div id="menu">
+    <h1 id="title">Pixel Art</h1>
+
+    <div id="color-palette">
+      <div class="color selected"></div>
+      <div class="color"></div>
+      <div class="color"></div>
+      <div class="color"></div>
+    </div>
+    <div id="button-conteiner">
+      <button id="button-random-color">Cores aleatórias</button>
+      <button id="clear-board">Limpar</button>
+      <label for="has-border" />
+      <input type="checkbox" id="has-border" checked="true"> border
+      <br>
+    </div>
+    <input id="board-size" type="number" min="1">
     <button id="generate-board">New Board</button>
     <br>
-  <div id="pixel-board"></div>
-  
+  </div>
+  <div id="pixel-board" draggable="false"></div>
   <script src="script.js"></script>
 </body>
 
