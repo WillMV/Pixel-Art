@@ -136,19 +136,19 @@ function clearAll() {
 
 function handleMouseMove(event) {
   if (isMousePressed) {
-    paint(event)
+    paint(event);
   }
-  console.log(event)
+  console.log(event);
 }
 
 function handleMouseDown(event) {
   isMousePressed = true
-  console.log(event)
+  console.log(event);
 }
 
 function handleMouseUp(event) {
   isMousePressed = false
-  console.log(event)
+  console.log(event);
 }
 
 if (localStorage.boardSize) {
@@ -159,22 +159,23 @@ if (localStorage.boardSize) {
   newBoard();
 }
 
-this.addEventListener('touchstart', handleMouseDown)
-this.addEventListener('touchend', handleMouseUp)
-pixelBoard.addEventListener('touchmove', handleMouseMove)
+this.addEventListener('touchstart', handleMouseDown);
+this.addEventListener('touchend', handleMouseUp);
+pixelBoard.addEventListener('touchmove', handleMouseMove);
 
-this.addEventListener('mousedown', handleMouseDown)
-this.addEventListener('mouseup', handleMouseUp)
-pixelBoard.addEventListener('mousemove', handleMouseMove)
+this.addEventListener('mousedown', handleMouseDown);
+this.addEventListener('mouseup', handleMouseUp);
+pixelBoard.addEventListener('mousemove', handleMouseMove);
 
+pixelBoard.addEventListerner('click', paint);
 colorPalette.addEventListener('click', colorSelector);
 clearBoard.addEventListener('click', clearAll);
 colorButton.addEventListener('click', colorGenerator);
-hasBorder.addEventListener('click', newBoard)
+hasBorder.addEventListener('click', newBoard);
 
 boardBtn.addEventListener('click', () => {
   localStorage.removeItem('pixelBoard');
-  newBoard()
+  newBoard();
 });
 
 
