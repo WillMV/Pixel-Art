@@ -167,7 +167,7 @@ this.addEventListener('mousedown', handleMouseDown);
 this.addEventListener('mouseup', handleMouseUp);
 pixelBoard.addEventListener('mousemove', handleMouseMove);
 
-pixelBoard.addEventListerner('click', paint);
+pixelBoard.addEventListener('click', paint);
 colorPalette.addEventListener('click', colorSelector);
 clearBoard.addEventListener('click', clearAll);
 colorButton.addEventListener('click', colorGenerator);
